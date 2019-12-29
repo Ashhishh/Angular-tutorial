@@ -1,0 +1,29 @@
+<form [formGroup]="post" (ngSubmit)="onSubmit()">
+  <h3>New Post</h3>
+  <label>
+    Title:
+    <input type="text" formControlName="title" #postTitle>
+    <div *ngIf="post.get('title').invalid && (post.get('title').dirty || post.get('title').touched)"
+     class="alert alert-danger"><div *ngIf="post.get('title').errors.required">
+      Title is required.
+    </div>
+    <div *ngIf="post.get('title').errors.minlength">
+        Title should have atleast 5 characters
+    </div>
+    <div *ngIf="post.get('title').errors.maxlength">
+        Title should have atmost 50 characters
+    </div></div>
+     
+  </label>
+  <label>
+    Body:
+    <input type="text" formControlName="body" #postBody>
+    <div *ngIf="post.get('body').invalid && (post.get('body').dirty || post.get('body').touched)"
+     class="alert alert-danger"><div *ngIf="post.get('title').errors.required">
+      Body Content is required.
+    </div></div>
+  </label>
+  <button type="submit">Submit</button>
+
+  <button (click)="setDefault()">Default</button> 
+</form>
